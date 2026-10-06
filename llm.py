@@ -66,7 +66,7 @@ class Block(nn.Module):
     def forward(self, x):
         """Pass a batch of character representations through the block."""
 
-        T = x.size(1)  # Sequence length.
+        T = x.size(1)
 
         # Create a causal mask. True entries block attention to future tokens.
         # This prevents the model from seeing the answer while predicting it.
@@ -84,7 +84,7 @@ class Block(nn.Module):
         )[0]
 
         # Apply the feed-forward network and another residual connection.
-        return x + self.mlp(self.ln2(x))                                      # residual
+        return x + self.mlp(self.ln2(x))
 
 class GPT(nn.Module):
     def __init__(self):
